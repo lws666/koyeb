@@ -1,13 +1,20 @@
-name: Auto Visit Website Every 5 Minutes
+name: Infinite Loop Website Visit Every 300s
 
 on:
+  workflow_dispatch:  # 手动触发
   schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
+    - cron: '0 * * * *'   # 每小时触发一次，保证 workflow 能定期启动
 
 jobs:
-  visit-website:
+  loop-visit:
     runs-on: ubuntu-latest
     steps:
-      - name: Curl Visit Website
-        run: curl -L https://unpleasant-cecelia-lwsnb6666-7b504a4b.koyeb.app/sub
+      - name: Loop Visit Website
+        run: |
+          url="https://unpleasant-cecelia-lwsnb6666-7b504a4b.koyeb.app/sub"
+          while true; do
+            echo "Visiting $url ..."
+            curl -m 60 -s -o /dev/null -w "%{http_code}\n" "$url"
+            echo "Sleeping for 300 seconds..."
+            sleep 300
+          done
