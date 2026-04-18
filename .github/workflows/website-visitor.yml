@@ -15,6 +15,6 @@ jobs:
           while true; do
             echo "Visiting $url ..."
             curl -m 60 -s -o /dev/null -w "%{http_code}\n" "$url"
-            echo "Sleeping for 300 seconds..."
-            sleep 300
+            echo "Sleeping for 500 seconds..."
+            sleep 500
           done
