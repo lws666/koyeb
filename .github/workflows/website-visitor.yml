@@ -1,4 +1,4 @@
-name: Infinite Loop Website Visit Every 300s
+name: Infinite Loop Website Visit Every 10s
 
 on:
   workflow_dispatch:  # 手动触发
@@ -15,6 +15,6 @@ jobs:
           while true; do
             echo "Visiting $url ..."
             curl -m 60 -s -o /dev/null -w "%{http_code}\n" "$url"
-            echo "Sleeping for 500 seconds..."
-            sleep 500
+            echo "Sleeping for 10 seconds..."
+            sleep 10
           done
